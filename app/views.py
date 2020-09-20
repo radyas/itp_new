@@ -2,7 +2,7 @@ from django.contrib.auth.models import User, Group
 from .models import *
 from rest_framework import viewsets
 from rest_framework import permissions
-from app.serializers import UserSerializer, GroupSerializer, CustomerSerializer, OrderSerializer
+from app.serializers import *
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -38,4 +38,31 @@ class OrderViewSet(viewsets.ModelViewSet):
     """
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+
+class ProviderViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = Provider.objects.all()
+    serializer_class = ProviderSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+
+class BranchViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = Branch.objects.all()
+    serializer_class = BranchSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+
+class DeliveryViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = Delivery.objects.all()
+    serializer_class = DeliverySerializer
     permission_classes = [permissions.IsAuthenticated]
