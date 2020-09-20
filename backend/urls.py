@@ -15,6 +15,8 @@ router.register(r'attendance', views.AttendanceViewSet)
 router.register(r'adjustment', views.AdjustmentsViewSet)
 router.register(r'salary', views.SalaryViewSet)
 router.register(r'designation', views.DesignationViewSet)
+router.register(r'department', views.DepartmentViewSet)
+router.register(r'documents', views.DocumentsViewSet)
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.

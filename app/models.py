@@ -86,3 +86,16 @@ class Attendance (models.Model):
     outTime = models.CharField(max_length=200, null=True)
     inTime = models.CharField(max_length=200, null=True)
 
+
+class Department(models.Model):
+    name = models.CharField(max_length=200, null=True)
+
+
+class Documents(models.Model):
+    name = models.CharField(max_length=200, null=True)
+    docCode = models.CharField(max_length=200, null=True)
+    status = models.CharField(max_length=200, null=True)
+    docType = models.CharField(max_length=200, null=True)
+    issueAuthority = models.CharField(max_length=200, null=True)
+    createDate = models.DateField(null=True)
+    department = models.ForeignKey(Department, on_delete=models.CASCADE, related_name="documents", null=True)
