@@ -27,3 +27,24 @@ class CustomerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Customer
         fields = ("name", "orders",)
+
+
+class ProviderSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Provider
+        fields = "__all__"
+
+
+class BranchSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Branch
+        fields = "__all__"
+
+
+class DeliverySerializer(serializers.ModelSerializer):
+    orders = OrderSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Delivery
+        fields = "__all__"
+
