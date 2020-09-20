@@ -53,6 +53,40 @@ class Delivery(models.Model):
     type = models.CharField(max_length=200, null=True)
 
 
+class Voucher(models.Model):
+    proofDocument = models.CharField(max_length=200 , null=True)
+    amount = models.CharField(max_length=200)
+    reason = models.CharField(max_length=200)
+    date = models.CharField(max_length=200)
+
+
+class Designation(models.Model):
+    # provider = models.ForeignKey(Provider, on_delete=models.CASCADE, related_name="bprovider", null=True)
+    basicSal = models.CharField(max_length=200, null=True)
+    role = models.CharField(max_length=200, null=True)
+
+
+class Adjustments(models.Model):
+    # provider = models.ForeignKey(Provider, on_delete=models.CASCADE, related_name="bprovider", null=True)
+    type = models.CharField(max_length=200, null=True)
+    amount = models.CharField(max_length=200, null=True)
+    date = models.DateField(null=True)
+    description = models.CharField(max_length=200, null=True)
+
+
+class Salary (models.Model):
+    # provider = models.ForeignKey(Provider, on_delete=models.CASCADE, related_name="bprovider", null=True)
+    month = models.CharField(max_length=200, null=True)
+    total = models.CharField(max_length=200, null=True)
+    issueDate = models.DateField(null=True)
+
+
+class Attendance (models.Model):
+    # provider = models.ForeignKey(Provider, on_delete=models.CASCADE, related_name="bprovider", null=True)
+    outTime = models.CharField(max_length=200, null=True)
+    inTime = models.CharField(max_length=200, null=True)
+
+
 class Department(models.Model):
     name = models.CharField(max_length=200, null=True)
 

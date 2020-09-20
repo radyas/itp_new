@@ -49,6 +49,38 @@ class DeliverySerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
+class VoucherSerializer(serializers.ModelSerializer):
+    users = UserSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Voucher
+        fields = "__all__"
+
+
+class AttendanceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Adjustments
+        fields = "__all__"
+
+
+class DesignationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Designation
+        fields = "__all__"
+
+
+class SalarySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Salary
+        fields = "__all__"
+
+
+class AdjustmentsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Adjustments
+        fields = "__all__"
+
+
 class DepartmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Department
