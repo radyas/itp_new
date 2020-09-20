@@ -66,3 +66,21 @@ class DeliveryViewSet(viewsets.ModelViewSet):
     queryset = Delivery.objects.all()
     serializer_class = DeliverySerializer
     permission_classes = [permissions.IsAuthenticated]
+
+
+class DepartmentViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = Department.objects.all()
+    serializer_class = DepartmentSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+
+class DocumentsViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = Documents.objects.all()
+    serializer_class = DocumentsSerializer
+    permission_classes = [permissions.IsAuthenticated]

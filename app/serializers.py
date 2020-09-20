@@ -48,3 +48,16 @@ class DeliverySerializer(serializers.ModelSerializer):
         model = Delivery
         fields = "__all__"
 
+
+class DepartmentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Department
+        fields = "__all__"
+
+
+class DocumentsSerializer(serializers.ModelSerializer):
+    departments = DepartmentSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Documents
+        fields = "__all__"
