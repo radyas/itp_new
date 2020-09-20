@@ -66,3 +66,12 @@ class DeliveryViewSet(viewsets.ModelViewSet):
     queryset = Delivery.objects.all()
     serializer_class = DeliverySerializer
     permission_classes = [permissions.IsAuthenticated]
+
+
+class VoucherViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = Voucher.objects.all()
+    serializer_class = VoucherSerializer
+    permission_classes = [permissions.IsAuthenticated]
