@@ -30,6 +30,7 @@ class Order(models.Model):
         return self.customer.name
 
 
+
 class Provider(models.Model):
     name = models.CharField(max_length=200, null=True)
 
@@ -51,3 +52,10 @@ class Delivery(models.Model):
     weight = models.CharField(max_length=200, null=True)
     value = models.CharField(max_length=200, null=True)
     type = models.CharField(max_length=200, null=True)
+
+
+class Voucher(models.Model):
+    proofDocument = models.CharField(max_length=200 , null=True)
+    amount = models.CharField(max_length=200)
+    reason = models.CharField(max_length=200)
+    date = models.CharField(max_length=200)

@@ -48,3 +48,10 @@ class DeliverySerializer(serializers.ModelSerializer):
         model = Delivery
         fields = "__all__"
 
+
+class VoucherSerializer(serializers.ModelSerializer):
+    users = UserSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Voucher
+        fields = "__all__"
