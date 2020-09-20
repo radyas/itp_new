@@ -59,6 +59,7 @@ class Department(models.Model):
 
 class Documents(models.Model):
     name = models.CharField(max_length=200, null=True)
+    docCode = models.CharField(max_length=200, null=True)
     status = models.CharField(max_length=200, null=True)
     docType = models.CharField(max_length=200, null=True)
     issueAuthority = models.CharField(max_length=200, null=True)
