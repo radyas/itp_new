@@ -55,3 +55,28 @@ class VoucherSerializer(serializers.ModelSerializer):
     class Meta:
         model = Voucher
         fields = "__all__"
+
+
+class AttendanceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Adjustments
+        fields = "__all__"
+
+
+class DesignationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Designation
+        fields = "__all__"
+
+
+class SalarySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Salary
+        fields = "__all__"
+
+
+class AdjustmentsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Adjustments
+        fields = "__all__"
+
