@@ -9,22 +9,93 @@ class Employee(AbstractUser):
     dob = models.DateField(null=True)
 
 
-class Attendance(models.Model):
-    in_time = models.DateTimeField(null=True),
-    out_time = models.DateTimeField(null=True),
-    employee_id = models.ForeignKey(Employee, null=True, on_delete=models.CASCADE)
+class Customer(models.Model):
+    name = models.CharField(max_length=200)
+    address = models.CharField(max_length=200, null=True)
+    phone = models.CharField(max_length=200, null=True)
+    email = models.CharField(max_length=200)
+
+    # def __str__(self):
+    #     return self.name
 
 
-class Salary(models.Model):
-    month = models.DateField(null=True),
-    issue_date = models.DateTimeField(null=True),
-    total = models.FloatField(default=0.0),
-    employee_id = models.ForeignKey(Employee, null=True, on_delete=models.CASCADE)
+class Order(models.Model):
+    brand = models.CharField(max_length=200, null=True)
+    weight = models.CharField(max_length=200, null=True)
+    shipAddress = models.CharField(max_length=200, null=True)
+    date = models.DateField(null=True)
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name="orders", null=True)
+
+    def __str__(self):
+        return self.customer.name
 
 
-class Adjustment(models.Model):
-    description = models.CharField(max_length=500, null=True),
-    date = models.DateTimeField(null=True),
-    amount = models.FloatField(default=0.0),
-    type = models.CharField(max_length=50),
-    employee_id = models.ForeignKey(Employee, null=True, on_delete=models.CASCADE)
+class Provider(models.Model):
+    name = models.CharField(max_length=200, null=True)
+
+
+class Branch(models.Model):
+    provider = models.ForeignKey(Provider, on_delete=models.CASCADE, related_name="bprovider", null=True)
+    location = models.CharField(max_length=200, null=True)
+    address = models.CharField(max_length=200, null=True)
+    phoneNumber = models.CharField(max_length=200, null=True)
+    contactPerson = models.CharField(max_length=200, null=True)
+
+
+class Delivery(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name="delivers", null=True)
+    provider = models.ForeignKey(Provider, on_delete=models.CASCADE, related_name="dprovider", null=True)
+    date = models.DateField(null=True)
+    pickupDate = models.DateField(null=True)
+    status = models.CharField(max_length=200, null=True)
+    weight = models.CharField(max_length=200, null=True)
+    value = models.CharField(max_length=200, null=True)
+    type = models.CharField(max_length=200, null=True)
+
+
+class Voucher(models.Model):
+    proofDocument = models.CharField(max_length=200 , null=True)
+    amount = models.CharField(max_length=200)
+    reason = models.CharField(max_length=200)
+    date = models.CharField(max_length=200)
+
+
+class Designation(models.Model):
+    # provider = models.ForeignKey(Provider, on_delete=models.CASCADE, related_name="bprovider", null=True)
+    basicSal = models.CharField(max_length=200, null=True)
+    role = models.CharField(max_length=200, null=True)
+
+
+class Adjustments(models.Model):
+    # provider = models.ForeignKey(Provider, on_delete=models.CASCADE, related_name="bprovider", null=True)
+    type = models.CharField(max_length=200, null=True)
+    amount = models.CharField(max_length=200, null=True)
+    date = models.DateField(null=True)
+    description = models.CharField(max_length=200, null=True)
+
+
+class Salary (models.Model):
+    # provider = models.ForeignKey(Provider, on_delete=models.CASCADE, related_name="bprovider", null=True)
+    month = models.CharField(max_length=200, null=True)
+    total = models.CharField(max_length=200, null=True)
+    issueDate = models.DateField(null=True)
+
+
+class Attendance (models.Model):
+    # provider = models.ForeignKey(Provider, on_delete=models.CASCADE, related_name="bprovider", null=True)
+    outTime = models.CharField(max_length=200, null=True)
+    inTime = models.CharField(max_length=200, null=True)
+
+
+class Department(models.Model):
+    name = models.CharField(max_length=200, null=True)
+
+
+class Documents(models.Model):
+    name = models.CharField(max_length=200, null=True)
+    docCode = models.CharField(max_length=200, null=True)
+    status = models.CharField(max_length=200, null=True)
+    docType = models.CharField(max_length=200, null=True)
+    issueAuthority = models.CharField(max_length=200, null=True)
+    createDate = models.DateField(null=True)
+    department = models.ForeignKey(Department, on_delete=models.CASCADE, related_name="documents", null=True)
