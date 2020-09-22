@@ -82,7 +82,7 @@ class AdjustmentsViewSet(viewsets.ModelViewSet):
     API endpoint that allows users to be viewed or edited.
     """
     queryset = Adjustments.objects.all()
-    serializer_class = AdjustmentsSerializer
+    serializer_class = AdjustmentaSerializer
     permission_classes = [permissions.IsAuthenticated]
 
 
