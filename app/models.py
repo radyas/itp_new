@@ -19,15 +19,28 @@ class Customer(models.Model):
     #     return self.name
 
 
+class Product(models.Model):
+    name = models.CharField(max_length=200, null=True)
+    reference_number = models.CharField(max_length=200, null=True)
+    quantity = models.CharField(max_length=200, null=True)
+    price = models.CharField(max_length=200, null=True)
+    type = models.CharField(max_length=200, null=True)
+    location = models.CharField(max_length=200, null=True)
+    weight = models.CharField(max_length=200, null=True)
+    description = models.CharField(max_length=200, null=True)
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE, related_name="product", null=True)
+
+
 class Order(models.Model):
     brand = models.CharField(max_length=200, null=True)
     weight = models.CharField(max_length=200, null=True)
     shipAddress = models.CharField(max_length=200, null=True)
     date = models.DateField(null=True)
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name="orders", null=True)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="products", null=True)
 
-    def __str__(self):
-        return self.customer.name
+    # def __str__(self):
+    #     return self.customer.name
 
 
 class Provider(models.Model):
@@ -99,18 +112,6 @@ class Documents(models.Model):
     issueAuthority = models.CharField(max_length=200, null=True)
     createDate = models.DateField(null=True)
     department = models.ForeignKey(Department, on_delete=models.CASCADE, related_name="documents", null=True)
-
-
-class Product(models.Model):
-    name = models.CharField(max_length=200, null=True)
-    reference_number = models.CharField(max_length=200, null=True)
-    quantity = models.CharField(max_length=200, null=True)
-    price = models.CharField(max_length=200, null=True)
-    type = models.CharField(max_length=200, null=True)
-    location = models.CharField(max_length=200, null=True)
-    weight = models.CharField(max_length=200, null=True)
-    description = models.CharField(max_length=200, null=True)
-    employee = models.ForeignKey(Employee, on_delete=models.CASCADE, related_name="product", null=True)
 
 
 class Supplier(models.Model):

@@ -96,6 +96,8 @@ class DocumentsSerializer(serializers.ModelSerializer):
 
 
 class ProductSerializer(serializers.ModelSerializer):
+    orders = OrderSerializer(many=True, read_only=True)
+
     class Meta:
         model = Product
         fields = "__all__"
