@@ -59,7 +59,7 @@ class VoucherSerializer(serializers.ModelSerializer):
 
 class AttendanceSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Adjustments
+        model = Attendance
         fields = "__all__"
 
 
@@ -75,7 +75,7 @@ class SalarySerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-class AdjustmentsSerializer(serializers.ModelSerializer):
+class AdjustmentaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Adjustments
         fields = "__all__"
