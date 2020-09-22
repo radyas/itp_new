@@ -129,3 +129,30 @@ class DocumentsViewSet(viewsets.ModelViewSet):
     queryset = Documents.objects.all()
     serializer_class = DocumentsSerializer
     permission_classes = [permissions.IsAuthenticated]
+
+
+class ProductViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+
+class SupplierViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = Supplier.objects.all()
+    serializer_class = SupplierSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+
+class WarehouseViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = Warehouse.objects.all()
+    serializer_class = WarehouseSerializer
+    permission_classes = [permissions.IsAuthenticated]

@@ -93,3 +93,21 @@ class DocumentsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Documents
         fields = "__all__"
+
+
+class ProductSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Product
+        fields = "__all__"
+
+
+class SupplierSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Supplier
+        fields = "__all__"
+
+
+class WarehouseSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Warehouse
+        fields = "__all__"
