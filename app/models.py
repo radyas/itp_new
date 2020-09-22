@@ -62,14 +62,14 @@ class Voucher(models.Model):
 
 class Designation(models.Model):
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE, related_name="employee", null=True)
-    basicSal = models.CharField(max_length=200, null=True)
+    basicSal = models.CharField(max_length=200, null=False)
     role = models.CharField(max_length=200, null=True)
 
 
 class Adjustments(models.Model):
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE, related_name="employeenum", null=True)
     type = models.CharField(max_length=200, null=True)
-    amount = models.CharField(max_length=200, null=True)
+    amount = models.CharField(max_length=200, null=False)
     date = models.DateField(null=True)
     description = models.CharField(max_length=200, null=True)
 
@@ -79,12 +79,12 @@ class Salary (models.Model):
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE, related_name="employeeno", null=True)
     month = models.CharField(max_length=200, null=True)
     total = models.CharField(max_length=200, null=True)
-    issueDate = models.DateField(null=True)
+    issueDate = models.DateField(null=False)
 
 
 
 class Attendance (models.Model):
-    employee = models.ForeignKey(Employee, on_delete=models.CASCADE, related_name="employeeid", null=True)
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE, related_name="employeeid", null=False)
     outTime = models.CharField(max_length=200, null=True)
     inTime = models.CharField(max_length=200, null=True)
 
