@@ -6,7 +6,7 @@ from rest_framework import serializers
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Employee
-        fields = ['url', 'username', 'email', 'groups']
+        fields = ['url', 'username', 'email', 'groups', 'first_name', 'last_name', 'address', 'dob', 'nic', 'phone']
 
 
 class GroupSerializer(serializers.HyperlinkedModelSerializer):
@@ -26,7 +26,7 @@ class CustomerSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Customer
-        fields = ("name", "orders",)
+        fields = '__all__'
 
 
 class ProviderSerializer(serializers.ModelSerializer):
