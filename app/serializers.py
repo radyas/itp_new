@@ -3,13 +3,13 @@ from .models import *
 from rest_framework import serializers
 
 
-class UserSerializer(serializers.HyperlinkedModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = Employee
         fields = ['url', 'username', 'email', 'groups', 'first_name', 'last_name', 'address', 'dob', 'nic', 'phone']
 
 
-class GroupSerializer(serializers.HyperlinkedModelSerializer):
+class GroupSerializer(serializers.ModelSerializer):
     class Meta:
         model = Group
         fields = ['url', 'name']
