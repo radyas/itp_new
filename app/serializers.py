@@ -3,16 +3,30 @@ from .models import *
 from rest_framework import serializers
 
 
-class UserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Employee
-        fields = ['url', 'username', 'email', 'groups', 'first_name', 'last_name', 'address', 'dob', 'nic', 'phone']
-
-
 class GroupSerializer(serializers.ModelSerializer):
     class Meta:
         model = Group
-        fields = ['url', 'name']
+        fields = ['url', 'id', 'name']
+
+
+class UserSerializer(serializers.ModelSerializer):
+    groups = GroupSerializer(read_only=True, many=True)
+    user_groups = serializers.ListField( write_only=True)
+
+    class Meta:
+        model = Employee
+        fields = [
+            'url', 'username', 'email', 'groups', 'first_name', 'last_name', 'address', 'dob', 'nic', 'phone', 'user_groups'
+        ]
+
+    def create(self, validated_data):
+        group_list = validated_data.pop('user_groups')
+        groups = Group.objects.all()
+        user = Employee.objects.create(**validated_data)
+        for group_data in group_list:
+            group = groups.filter(pk=group_data).get()
+            user.groups.add(group)
+        return user
 
 
 class OrderSerializer(serializers.ModelSerializer):
