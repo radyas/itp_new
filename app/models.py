@@ -85,7 +85,7 @@ class Salary (models.Model):
 
 class Attendance (models.Model):
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE, related_name="employeeid", null=False)
-    date = models.DateField(null=False)
+    date = models.DateField(null=True)
     type = models.CharField(max_length=200, null=True)
     outTime = models.CharField(max_length=200, null=True)
     inTime = models.CharField(max_length=200, null=True)
