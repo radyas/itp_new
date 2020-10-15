@@ -11,7 +11,7 @@ class GroupSerializer(serializers.ModelSerializer):
 
 class UserSerializer(serializers.ModelSerializer):
     groups = GroupSerializer(read_only=True, many=True)
-    user_groups = serializers.ListField( write_only=True)
+    user_groups = serializers.ListField(write_only=True)
 
     class Meta:
         model = Employee
