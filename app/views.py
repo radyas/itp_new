@@ -1,4 +1,8 @@
 from django.contrib.auth.models import User, Group
+from rest_framework.decorators import action
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
 from .models import *
 from rest_framework import viewsets
 from rest_framework import permissions
@@ -12,6 +16,17 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = Employee.objects.all().order_by('-date_joined')
     serializer_class = UserSerializer
     permission_classes = [permissions.IsAuthenticated]
+
+
+class ListUsers(APIView):
+
+    # authentication_classes = [authentication.TokenAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = UserSerializer
+
+    def get(self, request, format=None):
+        usernames = Employee.objects.filter(pk=self.request.user.id).get()
+        return Response({'name': str(usernames.first_name + ' ' + usernames.last_name)})
 
 
 class GroupViewSet(viewsets.ModelViewSet):
