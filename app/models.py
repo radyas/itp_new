@@ -78,6 +78,8 @@ class Adjustments(models.Model):
 class Salary (models.Model):
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE, related_name="employeeno", null=True)
     month = models.CharField(max_length=200, null=True)
+    addition = models.CharField(max_length=200, null=True)
+    deduction = models.CharField(max_length=200, null=True)
     total = models.CharField(max_length=200, null=True)
     issueDate = models.DateField(null=False)
 
