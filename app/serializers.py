@@ -16,7 +16,7 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = Employee
         fields = [
-            'url', 'username', 'email', 'groups', 'first_name', 'last_name', 'address', 'dob', 'nic', 'phone', 'user_groups'
+            'id', 'url', 'username', 'email', 'groups', 'first_name', 'last_name', 'address', 'dob', 'nic', 'phone', 'user_groups'
         ]
 
     def create(self, validated_data):
