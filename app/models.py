@@ -50,7 +50,7 @@ class Delivery(models.Model):
     status = models.CharField(max_length=200, null=True)
     weight = models.CharField(max_length=200, null=True)
     value = models.CharField(max_length=200, null=True)
-    type = models.CharField(max_length=200, null=True)
+    address = models.CharField(max_length=200, null=True)
 
 
 class Voucher(models.Model):
@@ -74,13 +74,11 @@ class Adjustments(models.Model):
     description = models.CharField(max_length=200, null=True)
 
 
-
 class Salary (models.Model):
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE, related_name="employeeno", null=True)
     month = models.CharField(max_length=200, null=True)
     total = models.CharField(max_length=200, null=True)
     issueDate = models.DateField(null=False)
-
 
 
 class Attendance (models.Model):
