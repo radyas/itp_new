@@ -74,7 +74,6 @@ class Adjustments(models.Model):
     description = models.CharField(max_length=200, null=True)
 
 
-
 class Salary (models.Model):
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE, related_name="employeeno", null=True)
     month = models.CharField(max_length=200, null=True)

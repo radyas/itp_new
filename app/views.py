@@ -100,6 +100,9 @@ class AdjustmentsViewSet(viewsets.ModelViewSet):
     serializer_class = AdjustmentaSerializer
     permission_classes = [permissions.IsAuthenticated]
 
+    def get_user_adjustments(self):
+        pass
+
 
 class DesignationViewSet(viewsets.ModelViewSet):
     """
