@@ -2,11 +2,18 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 
+class Department(models.Model):
+    name = models.CharField(max_length=200, null=True)
+
+
 class Employee(AbstractUser):
     address = models.CharField(max_length=200, null=True)
     nic = models.CharField(max_length=200, null=True)
     phone = models.CharField(max_length=200, null=True)
     dob = models.DateField(null=True)
+    department = models.ForeignKey(
+        Department, on_delete=models.SET_NULL, related_name='employee', null=True, blank=True
+    )
 
 
 class Customer(models.Model):
@@ -66,6 +73,7 @@ class Designation(models.Model):
     role = models.CharField(max_length=200, null=True)
 
 
+
 class Adjustments(models.Model):
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE, related_name="employeenum", null=True)
     type = models.CharField(max_length=200, null=True)
@@ -82,15 +90,10 @@ class Salary (models.Model):
     issueDate = models.DateField(null=False)
 
 
-
 class Attendance (models.Model):
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE, related_name="employeeid", null=False)
     outTime = models.CharField(max_length=200, null=True)
     inTime = models.CharField(max_length=200, null=True)
-
-
-class Department(models.Model):
-    name = models.CharField(max_length=200, null=True)
 
 
 class Documents(models.Model):

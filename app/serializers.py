@@ -3,6 +3,12 @@ from .models import *
 from rest_framework import serializers
 
 
+class DepartmentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Department
+        fields = "__all__"
+
+
 class GroupSerializer(serializers.ModelSerializer):
     class Meta:
         model = Group
@@ -11,21 +17,29 @@ class GroupSerializer(serializers.ModelSerializer):
 
 class UserSerializer(serializers.ModelSerializer):
     groups = GroupSerializer(read_only=True, many=True)
-    user_groups = serializers.ListField(write_only=True)
+    department = DepartmentSerializer(read_only=True)
+    department_id = serializers.CharField(write_only=True)
+    # user_groups = serializers.ListField(write_only=True)
 
     class Meta:
         model = Employee
         fields = [
-            'url', 'username', 'email', 'groups', 'first_name', 'last_name', 'address', 'dob', 'nic', 'phone', 'user_groups'
+            'url', 'username', 'email', 'groups', 'first_name', 'last_name', 'address', 'dob', 'nic', 'phone',
+            'department', 'department_id'
         ]
 
     def create(self, validated_data):
-        group_list = validated_data.pop('user_groups')
-        groups = Group.objects.all()
+        # group_list = validated_data.pop('user_groups')
+        # groups = Group.objects.all()
         user = Employee.objects.create(**validated_data)
-        for group_data in group_list:
-            group = groups.filter(pk=group_data).get()
-            user.groups.add(group)
+        user.is_active = True
+        user.is_staff = True
+        user.is_superuser = True
+        user.set_password("admin")
+        user.save()
+        # for group_data in group_list:
+        #     group = groups.filter(pk=group_data).get()
+        #     user.groups.add(group)
         return user
 
 
@@ -92,12 +106,6 @@ class SalarySerializer(serializers.ModelSerializer):
 class AdjustmentaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Adjustments
-        fields = "__all__"
-
-
-class DepartmentSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Department
         fields = "__all__"
 
 
