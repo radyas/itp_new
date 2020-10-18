@@ -44,7 +44,7 @@ class CustomerViewSet(viewsets.ModelViewSet):
     """
     queryset = Customer.objects.all()
     serializer_class = CustomerSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.AllowAny]
 
 
 class OrderViewSet(viewsets.ModelViewSet):
@@ -62,7 +62,7 @@ class ProviderViewSet(viewsets.ModelViewSet):
     """
     queryset = Provider.objects.all()
     serializer_class = ProviderSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.AllowAny]
 
 
 class BranchViewSet(viewsets.ModelViewSet):

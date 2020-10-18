@@ -57,7 +57,7 @@ class Delivery(models.Model):
     status = models.CharField(max_length=200, null=True)
     weight = models.CharField(max_length=200, null=True)
     value = models.CharField(max_length=200, null=True)
-    type = models.CharField(max_length=200, null=True)
+    address = models.CharField(max_length=200, null=True)
 
 
 class Voucher(models.Model):
@@ -80,7 +80,6 @@ class Adjustments(models.Model):
     amount = models.CharField(max_length=200, null=False)
     date = models.DateField(null=True)
     description = models.CharField(max_length=200, null=True)
-
 
 
 class Salary (models.Model):
