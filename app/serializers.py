@@ -120,7 +120,8 @@ class AdjustmentaSerializer(serializers.ModelSerializer):
 
 
 class DocumentsSerializer(serializers.ModelSerializer):
-    departments = DepartmentSerializer(many=True, read_only=True)
+    department = DepartmentSerializer(read_only=True)
+    department_id = serializers.CharField(write_only=True)
 
     class Meta:
         model = Documents
