@@ -29,7 +29,16 @@ class UserSerializer(serializers.ModelSerializer):
         return user
 
 
+class CustomersSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Customer
+        fields = '__all__'
+
+
 class OrderSerializer(serializers.ModelSerializer):
+    customer = CustomersSerializer(read_only=True)
+
     class Meta:
         model = Order
         fields = "__all__"
@@ -56,7 +65,8 @@ class BranchSerializer(serializers.ModelSerializer):
 
 
 class DeliverySerializer(serializers.ModelSerializer):
-    orders = OrderSerializer(many=True, read_only=True)
+    order = OrderSerializer(read_only=True)
+    provider = ProviderSerializer(read_only=True)
 
     class Meta:
         model = Delivery
