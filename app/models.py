@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.utils.translation import ugettext_lazy as _
 
 
 class Department(models.Model):
@@ -7,6 +8,7 @@ class Department(models.Model):
 
 
 class Employee(AbstractUser):
+    email = models.EmailField(_('email address'), unique=True)
     address = models.CharField(max_length=200, null=True)
     nic = models.CharField(max_length=200, null=True)
     phone = models.CharField(max_length=200, null=True)
@@ -14,6 +16,8 @@ class Employee(AbstractUser):
     department = models.ForeignKey(
         Department, on_delete=models.SET_NULL, related_name='employee', null=True, blank=True
     )
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []
 
 
 class Customer(models.Model):

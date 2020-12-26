@@ -70,6 +70,7 @@ REST_FRAMEWORK = {
     ),
 }
 
+AUTHENTICATION_BACKENDS = ['backend.auth_backend.EmailBackend']
 
 TEMPLATES = [
     {

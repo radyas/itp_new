@@ -25,7 +25,7 @@ class UserSerializer(serializers.ModelSerializer):
         model = Employee
         fields = [
             'url', 'username', 'email', 'groups', 'first_name', 'last_name', 'address', 'dob', 'nic', 'phone',
-            'department', 'department_id'
+            'department', 'department_id', 'id'
         ]
 
     def create(self, validated_data):
@@ -33,9 +33,9 @@ class UserSerializer(serializers.ModelSerializer):
         # groups = Group.objects.all()
         user = Employee.objects.create(**validated_data)
         user.is_active = True
-        user.is_staff = True
-        user.is_superuser = True
-        user.set_password("admin")
+        user.is_staff = False
+        user.is_superuser = False
+        user.set_password("user@123")
         user.save()
         # for group_data in group_list:
         #     group = groups.filter(pk=group_data).get()
